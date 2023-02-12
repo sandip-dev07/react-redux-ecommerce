@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #dfe4ea;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+html{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  // scroll-padding-top: 6rem;
+}

@@ -1,0 +1,40 @@
+.wrapper-container {
+  width: 80%;
+  margin: 5rem auto;
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  .genre {
+    display: flex;
+    gap: 5px;
+    .genre-btn {
+      background-color: black;
+      color: white;
+      padding: 8px;
+      cursor: pointer;
+    }
+  }
+  .prod-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .wrapper-container {
+    width: 90%;
+  
+    .prod-section {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+  }
+}
