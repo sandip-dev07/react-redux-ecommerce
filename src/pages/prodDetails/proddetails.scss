@@ -1,48 +1,90 @@
 .prod-details-container {
   margin-top: 5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
   width: 100%;
-  // margin: auto;
 
   .wrapper {
     width: 80%;
     margin: auto;
 
     display: flex;
-    // align-items: center;
     gap: 10px;
 
     .details-left {
       flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      background-color: var(--bg);
-      padding: .8rem;
       max-height: 35rem;
       overflow: hidden;
-      img {
-        width: 380px;
-        object-fit: contain;
+      width: 300px;
+      gap: 8px;
+      .prod-image {
+        display: flex;
+        justify-content: center;
+        border: 1px solid rgb(218, 216, 216);
+        width: 100%;
+        img {
+          width: 400px;
+          height: 400px;
+          object-fit: contain;
+          overflow: hidden;
+        }
+      }
+      .other-img {
+        display: flex;
+        gap: 5px;
+        overflow: hidden;
+        button {
+          background-color: white;
+          border: 1px solid rgb(218, 216, 216);
+          cursor: pointer;
+          overflow: hidden;
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            overflow: hidden;
+          }
+        }
       }
     }
     .details-right {
       flex: 1;
-      padding: 0 1rem ;
+      padding: 0 1rem;
       line-height: 1.2;
       .details-info {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        h3{
-            font-size: 1.3rem;
-            font-weight: 500;
+        h2 {
+          font-weight: 500;
         }
-        h4{
-            margin-top: .8rem;
-            font-weight: 500;
+        p {
+          font-weight: 400;
+          color: rgb(30, 30, 30);
+        }
+        .rating {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-weight: 400;
+          font-size: 13px;
+          background-color: black;
+          width: fit-content;
+          color: white;
+          padding: 5px;
+        }
+        h3 {
+          font-size: 1.3rem;
+          font-weight: 500;
+        }
+        h4 {
+          margin-top: 0.8rem;
+          font-weight: 500;
         }
         button {
-            width: fit-content;
+          width: fit-content;
           margin: 1.3rem 0;
           display: flex;
           align-items: center;
@@ -51,53 +93,80 @@
           background-color: black;
           color: white;
           cursor: pointer;
+          a {
+            color: white;
+          }
         }
       }
     }
   }
 }
 
-
 //responsive:
 @media screen and (max-width: 768px) {
-    .prod-details-container {
-        margin-top: 3rem;
-        margin-bottom: 5rem;
-      
-        .wrapper {
-          width: 90%;
-          gap: 20px;
-          flex-direction: column;
-      
-          .details-left {
-            padding: .6rem;
-            img {
-              width: 250px;
-            }
+  .prod-details-container {
+    margin-top: 2.5rem;
+    margin-bottom: 5rem;
+
+    .wrapper {
+      width: 90%;
+      gap: 20px;
+      flex-direction: column;
+
+      .details-left {
+        justify-content: flex-start;
+        max-height: 35rem;
+        overflow: hidden;
+        width: 100%;
+        .prod-image {
+          display: flex;
+          justify-content: center;
+          border: 1px solid rgb(218, 216, 216);
+          width: 100%;
+          img {
+            width: 380px;
+            height: 380px;
+            object-fit: contain;
+            overflow: hidden;
           }
-          .details-right {
-            padding: 0 ;
-            .details-info {
-              h2{
-                  font-size: 21px;
-              }
-              h3{
-                  font-size: 1.1rem;
-                  font-weight: 500;
-              }
-              h4{
-                  margin-top: .8rem;
-                  font-weight: 500;
-              }
-              p{
-                font-size: 12px;
-              }
-              button {
-                  width: fit-content;
-              }
+        }
+        .other-img {
+          button {
+            background-color: white;
+            border: 1px solid rgb(218, 216, 216);
+            cursor: pointer;
+            overflow: hidden;
+            img {
+              width: 100px;
+              height: 100px;
+              object-fit: contain;
+              overflow: hidden;
             }
           }
         }
       }
-
+      .details-right {
+        padding: 0;
+        .details-info {
+          h2 {
+            font-size: 21px;
+          }
+          h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+          }
+          h4 {
+            margin-top: 0.8rem;
+            font-weight: 500;
+          }
+          p {
+            font-size: 12px;
+          }
+          button {
+            width: fit-content;
+          }
+        }
+      }
+    }
+  }
 }

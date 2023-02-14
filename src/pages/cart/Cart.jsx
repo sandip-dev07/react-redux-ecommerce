@@ -1,9 +1,5 @@
-import React from "react";
-import NewsLetter from "../../components/brands&newsletter/NewsLetter";
-import Footer from "../../components/footer/Footer";
-import Navbar from "../../components/navbar/Navbar";
+import React, { useState } from "react";
 import "./cart.scss";
-import image1 from "../../assets/product-image1.jpg";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -14,6 +10,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const { carts } = useSelector((state) => state.products);
+
   const totalPrice = carts.reduce((acc, a) => {
     return acc + a.price;
   }, 0);
@@ -22,7 +19,7 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="card-wrapper">
         <div className="cart-items">
           {carts && Object.keys(carts).length > 0 ? (
@@ -30,17 +27,24 @@ const Cart = () => {
               {carts.map((item) => {
                 return (
                   <div key={item.id} className="cart-card">
-                    <img src={item.image} alt="" />
+                    <Link to={`/products/${item.id}`}>
+                      <img src={item.image} alt="" />
+                    </Link>
                     <div className="details">
-                      <p> {item.title}</p>
-                      <h5> ${item.price}</h5>
+                      <div className="details-price">
+                        <p> {item.title}</p>
+                      </div>
 
-                      <button
-                        onClick={() => dispatch(RemoveCart(item.id))}
-                        className="btn"
-                      >
-                        <MdDeleteOutline />
-                      </button>
+                      <div className="quantity-btn">
+                        <h5>₹{(item.price * 70).toFixed(2)}</h5>
+
+                        <button
+                          onClick={() => dispatch(RemoveCart(item.id))}
+                          className="btn"
+                        >
+                          <MdDeleteOutline />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
@@ -56,23 +60,23 @@ const Cart = () => {
           )}
         </div>
         <div className="cart-total-price">
-          <h3>Price Details</h3>
+          <h4>Price Details</h4>
           <div className="price-count">
             <p>
-              price({carts.length} items) : <span>$ {totalPrice}</span>
+              price({carts.length} items) :{" "}
+              <span>₹ {(totalPrice * 70).toFixed(2)}</span>
             </p>
             <p>
               discount : <span> 10%</span>
             </p>
 
             <h4>
-              Total Price : <span>$ {finalPrice}</span>
+              Final Price : <span>₹ {(finalPrice * 70).toFixed(2)}</span>
             </h4>
             <button>Place order</button>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

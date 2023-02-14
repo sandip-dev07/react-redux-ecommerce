@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./productlist.scss";
+import "./searchResult.scss";
 import ProductCard from "../../components/prodCard/ProductCrad";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -7,39 +7,42 @@ import {
   fetchAllProducts,
   searchProducts,
 } from "../../Redux/reducer/productSlice";
-import { useSearchParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
 
-const ProductList = () => {
+const SearchResult = () => {
   const [product, setProduct] = useState([]);
-  const [query] = useSearchParams();
-
-  const searchInput = query.get("q");
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchInput = searchParams.get("q");
 
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { products, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const products = searchInput
-        ? dispatch(searchProducts(searchInput))
-        : dispatch(fetchAllProducts());
-      setProduct(products);
+      let fetchAction;
+      if (searchInput) {
+        fetchAction = searchProducts(searchInput);
+      } else {
+        fetchAction = fetchAllProducts();
+      }
+      const response = await dispatch(fetchAction);
+      setProduct(response);
     };
     fetchProducts().catch(console.error);
-  }, [ searchInput]);
+  }, [searchInput]);
 
   return (
-    <div id="prod-section" className="wrapper-container">
-      <h3>All Products</h3>
-      <div className="genre">
+    <div className="search-container">
+      <h3 className="head">Search products: {searchInput}</h3>
+      {/* <div className="genre">
         <button className="genre-btn">All</button>
         <button className="genre-btn">Cloths</button>
         <button className="genre-btn">Electronics</button>
         <button className="genre-btn">Others</button>
-      </div>
-      <section className="prod-section">
+      </div> */}
+      <section className="search-section">
         {loading && <p style={{ textAlign: "center" }}>loading...</p>}
         {!loading && (!products || !products.length) ? (
           <>
@@ -58,4 +61,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default SearchResult;

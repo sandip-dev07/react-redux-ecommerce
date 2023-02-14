@@ -1,31 +1,34 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate,createSearchParams } from "react-router-dom";
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchAllProducts,
-  searchProducts,
-} from "../../Redux/reducer/productSlice";
+import { searchProducts } from "../../Redux/reducer/productSlice";
 
 const Navbar = () => {
   const { carts } = useSelector((state) => state.products);
+  const navigate = useNavigate();
 
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
 
   const handleInput = (e) => {
+
+    
     setSearchInput(e.target.value);
+    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchInput);
-    dispatch(searchProducts(searchInput));
-    console.log('ok');
+    if(searchInput.trim().length){
+      
+      navigate(`/search/?${createSearchParams({ q: searchInput })}`);
+      dispatch(searchProducts(searchInput));
+    }
+    setSearchInput("")
   };
-
 
   return (
     <nav className="nav-container">
@@ -40,13 +43,12 @@ const Navbar = () => {
         <div className="search">
           <form onSubmit={handleSubmit}>
             <input
-              type="text"
+              type="search"
               placeholder="Search here..."
               value={searchInput}
               onChange={handleInput}
             />
           </form>
-          
         </div>
         <div className="links">
           <div className="user">
@@ -93,7 +95,7 @@ const Navbar = () => {
       <div className="search-mobile">
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
+            type="search"
             placeholder="Search here..."
             value={searchInput}
             onChange={handleInput}

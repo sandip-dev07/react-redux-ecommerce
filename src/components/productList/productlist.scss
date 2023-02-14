@@ -6,6 +6,9 @@
     text-transform: uppercase;
     font-size: 1.5rem;
     margin: 1rem 0;
+    
+      font-weight: 500;
+    
   }
   .genre {
     display: flex;
@@ -24,6 +27,7 @@
     flex-wrap: wrap;
     gap: 2rem;
     margin-top: 2.5rem;
+    
   }
 }
 
