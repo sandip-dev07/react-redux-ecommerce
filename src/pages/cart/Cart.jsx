@@ -73,7 +73,7 @@ const Cart = () => {
             <h4>
               Final Price : <span>₹ {(finalPrice * 70).toFixed(2)}</span>
             </h4>
-            <button>Place order</button>
+            <button className="order-btn">Place order</button>
           </div>
         </div>
       </div>

@@ -6,14 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllProducts,
   searchProducts,
+  fetchByCategory,
 } from "../../Redux/reducer/productSlice";
-import { useSearchParams } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [product, setProduct] = useState([]);
-  const [query] = useSearchParams();
+  const [category, setCategory] = useState("");
+  const [query, setQuery] = useSearchParams();
 
   const searchInput = query.get("q");
 
@@ -22,22 +28,61 @@ const ProductList = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const products = searchInput
-        ? dispatch(searchProducts(searchInput))
-        : dispatch(fetchAllProducts());
+      let products;
+
+      if (searchInput) {
+        products = await dispatch(searchProducts(searchInput));
+      } else if (category) {
+        products = await dispatch(fetchByCategory(category));
+      } else {
+        products = await dispatch(fetchAllProducts());
+      }
+
       setProduct(products);
     };
+
     fetchProducts().catch(console.error);
-  }, [ searchInput]);
+  }, [searchInput, category]);
+
+  const handleOnClick = (value) => {
+    setCategory(value);
+    setQuery("category", value);
+  };
 
   return (
     <div id="prod-section" className="wrapper-container">
-      <h3>All Products</h3>
-      <div className="genre">
-        <button className="genre-btn">All</button>
-        <button className="genre-btn">Cloths</button>
-        <button className="genre-btn">Electronics</button>
-        <button className="genre-btn">Others</button>
+      <h3>
+      {category ? `${category.toUpperCase()}` : "All Products"}
+
+</h3>
+      <div className="category">
+        <button onClick={() => handleOnClick("")} className="category-btn">
+          All
+        </button>
+        <button
+          onClick={() => handleOnClick("men's clothing")}
+          className="category-btn"
+        >
+          Mens
+        </button>
+        <button
+          onClick={() => handleOnClick("women's clothing")}
+          className="category-btn"
+        >
+          Womens
+        </button>
+        <button
+          onClick={() => handleOnClick("jewelery")}
+          className="category-btn"
+        >
+          Jewellery
+        </button>
+        <button
+          onClick={() => handleOnClick("electronics")}
+          className="category-btn"
+        >
+          Electronics
+        </button>
       </div>
       <section className="prod-section">
         {loading && <p style={{ textAlign: "center" }}>loading...</p>}
@@ -48,7 +93,7 @@ const ProductList = () => {
               <Link to="/">
                 <BiArrowBack /> Back to home
               </Link>
-            </div>{" "}
+            </div>
           </>
         ) : (
           <ProductCard products={products} />

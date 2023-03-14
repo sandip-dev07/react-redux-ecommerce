@@ -35,7 +35,7 @@ const SearchResult = () => {
 
   return (
     <div className="search-container">
-      <h3 className="head">Search products: {searchInput}</h3>
+      <h3 className="head">Results : {searchInput}</h3>
       {/* <div className="genre">
         <button className="genre-btn">All</button>
         <button className="genre-btn">Cloths</button>

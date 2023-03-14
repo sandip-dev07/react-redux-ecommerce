@@ -4,20 +4,19 @@
   margin-top: 1rem;
   display: flex;
   padding: 1.2rem 0;
-  h3{
+  h3 {
     font-size: 20px;
     font-weight: 400;
-    margin-bottom: .8rem;
+    margin-bottom: 0.8rem;
     text-decoration: underline;
   }
-  ul{
+  ul {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    li{
-        font-weight: 300;
-    
-      }
+    li {
+      font-weight: 300;
+    }
   }
   .boxOne {
     flex: 1;
@@ -33,15 +32,19 @@
   }
 }
 
-
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .footer-container {
     flex-direction: column;
     gap: 20px;
-    h3{
-      margin-bottom: .4rem;
+    h3 {
+      font-size: 17px;
+      margin-bottom: 0.4rem;
     }
-    ul{
-      gap: 5px;}
+    ul {
+      gap: 5px;
+      li{
+        font-size: 15px;
+      }
+    }
   }
 }

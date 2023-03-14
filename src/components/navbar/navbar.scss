@@ -1,11 +1,13 @@
 .nav-container {
   width: 100%;
-  background-color: #dfe4ea;
+  background-color:var(--navbar);
   padding: 5px 0;
   position: sticky;
   top: 0;
   z-index: 4;
-  // background-color: rgb(130, 129, 129);
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(105,104,105,0.59);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(105,104,105,0.59);
+  box-shadow: 0px 1px 5px 0px rgba(105,104,105,0.59);
   .wrapper-desk {
     height: 60px;
     max-width: 90%;
@@ -17,6 +19,7 @@
       flex: 1;
       display: flex;
       align-items: center;
+     
       img {
         width: 55px;
         border-radius: 50%;
@@ -27,7 +30,7 @@
       }
       h3 {
         font-size: 25px;
-        color: black;
+        color: var(--cart-btn);
       }
     }
     .search {
@@ -37,8 +40,9 @@
       form{
         width: 100%;
         input {
-          padding: 8px;
+          padding: 10px 8px;
           width: 80%;
+          background-color: rgb(239, 235, 235);
         }
       }
     }
@@ -60,7 +64,6 @@
         height: 28px;
         height: auto;
         cursor: pointer;
-        // overflow: hidden;
         .material-icons {
           position: relative;
           top: 4px;
@@ -75,7 +78,7 @@
           z-index: 2;
           font-size: 11px;
           border-radius: 50%;
-          background: #d60b28;
+          background-color: var(--count);
           width: 16px;
           height: 16px;
           line-height: 16px;
@@ -115,9 +118,11 @@
       }
       h3 {
         font-size: 25px;
-        color: black;
+        color: var(--cart-btn);
       }
+      
     }
+    
     
     .links {
       flex: 1;
@@ -152,7 +157,7 @@
           z-index: 2;
           font-size: 11px;
           border-radius: 50%;
-          background: #d60b28;
+          background-color: var(--count);
           width: 16px;
           height: 16px;
           line-height: 16px;
@@ -176,6 +181,7 @@
       input {
         padding: 10px 8px;
         width: 90%;
+        background-color: rgb(239, 235, 235);
       }
     }
   }

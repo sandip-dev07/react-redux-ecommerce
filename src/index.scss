@@ -1,7 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap');
 
 :root {
-  --bg: #dfe4ea;
+  --border: rgb(205, 201, 201);
+  --navbar:#fff;
+  --hero-txt:#000;
+  --body:#fff;
+  --card:#fbf7f7;
+  --count:#ff5857;
+  --cart-btn:#fd164c;
+  --rating:#dd800e;
+  --sub-txt:#ff3838;
+
 }
 
 *{
@@ -18,5 +27,9 @@
 html{
   overflow-x: hidden;
   scroll-behavior: smooth;
-  // scroll-padding-top: 6rem;
+  scroll-padding-top: 0rem;
+}
+::selection {
+  background-color: var(--cart-btn);
+  color: white;
 }

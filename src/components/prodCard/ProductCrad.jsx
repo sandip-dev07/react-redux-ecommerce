@@ -17,9 +17,9 @@ const ProductCard = ({ products }) => {
               <div className="prod-details">
                 <h3 className="head-category">{item.category}</h3>
                 <p>{item.title}</p>
-                <p className="rating">
+                {/* <p className="rating">
                   {(item.rating.rate)}<AiFillStar/>
-                </p>
+                </p> */}
                 <h4>₹{((item.price)*70).toFixed(2)}</h4>
                 
               </div>

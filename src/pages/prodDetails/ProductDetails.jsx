@@ -55,7 +55,7 @@ const ProductDetails = () => {
     <>
       <div className="prod-details-container">
         {/* {loading && <p style={{ textAlign: "center" }}>loading...</p>} */}
-        {products.length > 0 && (
+        {products.length > 0 ? (
           <div className="wrapper">
             <div className="details-left">
               <div className="prod-image">
@@ -77,8 +77,9 @@ const ProductDetails = () => {
 
             <div className="details-right">
               <div className="details-info">
+              <h3 className="head-category">{product.category}</h3>
                 <h2>{product && product.title}</h2>
-                <p>{product && product.description}</p>
+                <p className="para">{product && product.description}</p>
                 <p className="rating">
                   {" "}
                   {product.rating.rate.toFixed(1)}
@@ -110,16 +111,16 @@ const ProductDetails = () => {
                   </button>
                 ) : (
                   <button disabled>
-                    <span>
-                      <BsFillCartCheckFill />
-                    </span>
-                    <Link to="/cart">GO TO CART</Link>
+                    
+                    <Link to="/cart">
+                      
+                      GO TO CART</Link>
                   </button>
                 )}
               </div>
             </div>
           </div>
-        )}
+        ) : <p style={{textAlign:"center"}} >Sorry! data not found</p>}
       </div>
 
       <NewsLetter />

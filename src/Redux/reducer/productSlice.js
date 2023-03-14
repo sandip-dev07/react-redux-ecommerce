@@ -2,8 +2,6 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../url/base_url";
 
-
-
 const initialState = {
   carts: [],
   products: [],
@@ -29,6 +27,17 @@ export const fetchSingleProduct = createAsyncThunk(
   }
 );
 
+//fetch by category:
+
+export const fetchByCategory = createAsyncThunk(
+  "products/fetchByCategory",
+  async (category) => {
+    const res = await axios.get(`${BASE_URL}/products/category/${category}`);
+
+    return res.data;
+  }
+);
+
 //search products:
 export const searchProducts = createAsyncThunk(
   "products/searchProducts",
@@ -36,9 +45,10 @@ export const searchProducts = createAsyncThunk(
     try {
       const res = await axios.get(`${BASE_URL}/products`);
       const data = res.data;
-      return data.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase()) ||
-        product.category.toLowerCase().includes(query.toLowerCase())
+      return data.filter(
+        (product) =>
+          product.title.toLowerCase().includes(query.toLowerCase()) ||
+          product.category.toLowerCase().includes(query.toLowerCase())
       );
     } catch (error) {
       console.error(error);
@@ -74,6 +84,10 @@ const productSlice = createSlice({
       state.loading = false;
     },
     [searchProducts.fulfilled]: (state, action) => {
+      state.products = action.payload;
+      state.loading = false;
+    },
+    [fetchByCategory.fulfilled]: (state, action) => {
       state.products = action.payload;
       state.loading = false;
     },

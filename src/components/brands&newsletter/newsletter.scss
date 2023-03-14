@@ -1,6 +1,7 @@
 .brands-newsLetter-container {
   width: 100%;
   margin: auto;
+
   .brands-wrapper {
     width: 90%;
     margin: auto;
@@ -35,7 +36,7 @@
     display: flex;
     align-items: center;
     height: 18vh;
-    background-color: var(--bg);
+    background-color: var(--border);
     .news-wrapper {
       width: 85%;
       margin: auto;
@@ -66,7 +67,7 @@
           }
           button {
             padding: 0.5rem 0.7rem;
-            background-color: black;
+            background-color: var(--cart-btn);
             color: white;
             cursor: pointer;
             text-transform: uppercase;

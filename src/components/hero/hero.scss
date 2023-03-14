@@ -1,10 +1,11 @@
 .hero-container {
   width: 100%;
   height: 68vh;
-  background-color: var(--bg);
-  // position: relative;
+
+  background: url('../../assets/banner.jpg')  no-repeat center center / cover;
+  background-position: 60%;
   top: 0;
-  left: 0;
+  left: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,28 +15,34 @@
     line-height: 1.5;
     h1 {
       font-size: 4rem;
-    
+      color: var(--hero-txt);
+      font-weight: 600;
     }
     h3 {
-      font-weight: 400;
+      font-weight: 500;
     }
     button {
       padding: 10px;
       margin-top: 20px;
-      background-color: #000000;
+      font-weight: 500;
+      background-color: var(--cart-btn);
+      transition: all 0.3s ease;
       color: #fff;
       cursor: pointer;
     }
   }
 }
-@media screen and (max-width:768px) {
-  .hero-container{
-    .hero-details{
-      h1{
-        font-size: 2.8rem;
+@media screen and (max-width: 768px) {
+  .hero-container {
+    height: 58vh;
+    .hero-details {
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 600;
       }
       h3 {
-        font-size: 15px;
+        font-size: 14px;
+        font-weight: 500;
       }
     }
   }
