@@ -7,19 +7,22 @@ import ProductDetails from './pages/prodDetails/ProductDetails';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import SearchResult from './pages/searchResult/SearchResult';
+import CategoryResult from './pages/categoryResult/CategoryResult';
 
 const App = () => {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/products/:id' element={<ProductDetails/>} />
-        <Route path='/search/' element={<SearchResult/>} />
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='/*' element={<NotFound/>} />
+        <Route path='/' element={<Home />} />
+        <Route path='/products/:id' element={<ProductDetails />} />
+        <Route path='/search/' element={<SearchResult />} />
+        <Route path='/category/:category' element={<CategoryResult />} />
+
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
-      <Footer/>
+      <Footer />
 
     </>
   )

@@ -1,41 +1,30 @@
-import React, { useEffect, useState } from "react";
-import "./searchResult.scss";
-import ProductCard from "../../components/prodCard/ProductCrad";
 
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchAllProducts,
-  searchProducts,
-} from "../../Redux/reducer/productSlice";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
+import ProductCard from "../../components/prodCard/ProductCrad";
+import "./categoryResult.scss";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchByCategory,
+} from "../../Redux/reducer/productSlice";
+import { useParams } from "react-router-dom";
 
-const SearchResult = () => {
-  const [product, setProduct] = useState([]);
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const searchInput = searchParams.get("q");
 
+
+const CategoryResult = () => {
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.products);
+  const { category } = useParams();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      let fetchAction;
-      if (searchInput) {
-        fetchAction = searchProducts(searchInput);
-      } else {
-        fetchAction = fetchAllProducts();
-      }
-      const response = await dispatch(fetchAction);
-      setProduct(response);
-    };
-    fetchProducts().catch(console.error);
-  }, [searchInput]);
-
+    dispatch(fetchByCategory(category));
+  }, [category, dispatch]);
+  
   return (
     <div className="search-container">
-      <h3 className="head">Results : {searchInput}</h3>
+      <h3 className="head">{category}
+      </h3>
       <section className="search-section">
         {loading && <p style={{ textAlign: "center" }}>loading...</p>}
         {!loading && (!products || !products.length) ? (
@@ -53,6 +42,6 @@ const SearchResult = () => {
       </section>
     </div>
   );
-};
+}
 
-export default SearchResult;
+export default CategoryResult

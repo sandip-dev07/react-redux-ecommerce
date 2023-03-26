@@ -33,8 +33,7 @@ export const fetchByCategory = createAsyncThunk(
   "products/fetchByCategory",
   async (category) => {
     const res = await axios.get(`${BASE_URL}/products/category/${category}`);
-
-    return res.data;
+    return { products: res.data };
   }
 );
 
@@ -88,7 +87,7 @@ const productSlice = createSlice({
       state.loading = false;
     },
     [fetchByCategory.fulfilled]: (state, action) => {
-      state.products = action.payload;
+      state.products = action.payload.products;
       state.loading = false;
     },
   },

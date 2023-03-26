@@ -55,7 +55,7 @@ const ProductList = () => {
       {category ? `${category.toUpperCase()}` : "All Products"}
 
 </h3>
-      <div className="category">
+      <div className="categoryy">
         <button onClick={() => handleOnClick("")} className="category-btn">
           All
         </button>

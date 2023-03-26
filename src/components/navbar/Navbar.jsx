@@ -1,12 +1,19 @@
-import React, { useState } from "react";
-import { Link, useNavigate,createSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, createSearchParams } from "react-router-dom";
 import "./navbar.scss";
 import logo from "../../assets/logo.png";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { RiMenu3Fill, RiMenu2Fill } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { searchProducts } from "../../Redux/reducer/productSlice";
+import { fetchByCategory, searchProducts } from "../../Redux/reducer/productSlice";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(true)
+
+  useEffect(() => {
+
+  }, []);
   const { carts } = useSelector((state) => state.products);
   const navigate = useNavigate();
 
@@ -14,33 +21,93 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleInput = (e) => {
-
-    
     setSearchInput(e.target.value);
-    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(searchInput.trim().length){
-      
+    if (searchInput.trim().length) {
+
       navigate(`/search/?${createSearchParams({ q: searchInput })}`);
       dispatch(searchProducts(searchInput));
     }
     setSearchInput("")
   };
 
+  const menuHandleClick = (category) => () => {
+    setIsOpen(true);
+    navigate(`/category/${category}`);
+    dispatch(fetchByCategory(category));
+  };
+
   return (
-    <nav className="nav-container">
-      {/* desktop */}
-      <div className="wrapper-desk">
-        <div className="logo">
-          <img src={logo} alt="" />
-          <Link to="/">
-            <h3>Redux</h3>
-          </Link>
+    <>
+      <nav className="nav-container">
+        {/* desktop */}
+        <div className="wrapper-desk">
+          <div className="logo">
+
+            <img className="image" src={logo} alt="" />
+            <Link to="/">
+              <h3>Redux</h3>
+            </Link>
+          </div>
+          <div className="search">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="search"
+                placeholder="Search here..."
+                value={searchInput}
+                onChange={handleInput}
+              />
+            </form>
+          </div>
+          <div className="links">
+            <div className="user">
+              <a href="">
+                <FaUser /> Login
+              </a>
+            </div>
+
+            <Link to="/cart">
+              <div className="cart">
+                <span className="count">{carts.length}</span>
+                <FaShoppingCart />
+              </div>
+            </Link>
+          </div>
         </div>
-        <div className="search">
+        {/* desktop */}
+        {/* mobile */}
+        <div className="wrapper-mob">
+          <div className="logo">
+            <div onClick={() => {
+              setIsOpen(false)
+            }} className="menu-btn">
+              <RiMenu2Fill size={20} />
+            </div>
+            <img className="mob-img" src={logo} alt="" />
+            <Link to="/">
+              <h3>Redux</h3>
+            </Link>
+          </div>
+
+          <div className="links">
+            <div className="user">
+              <a href="">
+                <FaUser /> Login
+              </a>
+            </div>
+
+            <Link to="/cart">
+              <div className="cart">
+                <span className="count">{carts.length}</span>
+                <FaShoppingCart />
+              </div>
+            </Link>
+          </div>
+        </div>
+        <div className="search-mobile">
           <form onSubmit={handleSubmit}>
             <input
               type="search"
@@ -50,61 +117,40 @@ const Navbar = () => {
             />
           </form>
         </div>
-        <div className="links">
-          <div className="user">
-            <a href="">
-              User <FaUser />
-            </a>
-          </div>
-          {/* <a href="">Register</a> */}
+        {/* mobile */}
 
-          <Link to="/cart">
-            <div className="cart">
-              <span className="count">{carts.length}</span>
-              <FaShoppingCart />
+      </nav>
+      <div className="category">
+        <div className={isOpen ? "menu-container" : "menu-container-view"}>
+          <ul className="menu-items">
+            <div onClick={() => {
+              setIsOpen(true)
+            }} className="menu-close">
+              <RxCross2 size={25} />
             </div>
-          </Link>
-        </div>
-      </div>
-      {/* desktop */}
-      {/* mobile */}
-      <div className="wrapper-mob">
-        <div className="logo">
-          <img src={logo} alt="" />
-          <Link to="/">
-            <h3>Redux</h3>
-          </Link>
-        </div>
+            <li onClick={menuHandleClick(("men's clothing"))}>
+              <Link>Mens</Link>
+            </li>
+            {/* | */}
+            <span className="line">|</span>
+            <li onClick={menuHandleClick(("women's clothing"))}>
+              <Link>Womens</Link>
+            </li>
+            {/* | */}
+            <span className="line">|</span>
+            <li onClick={menuHandleClick(("jewelery"))}>
+              <Link>Jewelery</Link>
+            </li>
+            {/* | */}
+            <span className="line">|</span>
+            <li onClick={menuHandleClick(("electronics"))}>
+              <Link>Electronics</Link>
 
-        <div className="links">
-          <div className="user">
-            <a href="">
-              User <FaUser />
-            </a>
-          </div>
-          {/* <a href="">Register</a> */}
-
-          <Link to="/cart">
-            <div className="cart">
-              <span className="count">{carts.length}</span>
-              <FaShoppingCart />
-            </div>
-          </Link>
+            </li>
+          </ul>
         </div>
       </div>
-      <div className="search-mobile">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="search"
-            placeholder="Search here..."
-            value={searchInput}
-            onChange={handleInput}
-          />
-          {/* <button>go</button> */}
-        </form>
-      </div>
-      {/* mobile */}
-    </nav>
+    </>
   );
 };
 

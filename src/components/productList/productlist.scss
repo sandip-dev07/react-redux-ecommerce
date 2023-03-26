@@ -9,9 +9,10 @@
 
     font-weight: 500;
   }
-  .category {
+  .categoryy {
     display: flex;
     gap: 5px;
+    display: none;
     .category-btn {
       background-color: var(--cart-btn);
       color: white;
