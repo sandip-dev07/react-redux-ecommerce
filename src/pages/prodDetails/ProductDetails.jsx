@@ -3,7 +3,6 @@ import NewsLetter from "../../components/brands&newsletter/NewsLetter";
 import "./proddetails.scss";
 import { ImPriceTag } from "react-icons/im";
 import { FaCartPlus } from "react-icons/fa";
-import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import {
   AddToCart,
@@ -11,6 +10,7 @@ import {
 } from "../../Redux/reducer/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillStar } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -29,6 +29,9 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     dispatch(AddToCart(product.id));
     setIsAddedToCart(true);
+    toast.success("Added to cart", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   };
 
   const isItemInCart = carts.some((item) => item.id === product.id);
@@ -41,15 +44,6 @@ const ProductDetails = () => {
     }
   }, [product]);
 
-  // const btnOne = () => {
-  //   setImage(product.thumbnail);
-  // };
-  // const btnTwo = () => {
-  //   setImage(product.images[0]);
-  // };
-  // const btnThree = () => {
-  //   setImage(product.images[1]);
-  // };
 
   return (
     <>
@@ -59,25 +53,14 @@ const ProductDetails = () => {
           <div className="wrapper">
             <div className="details-left">
               <div className="prod-image">
-              <img src={!loading && image} alt="loading..." />
+                <img src={!loading && image} alt="loading..." />
               </div>
-              {/* <div className="other-img">
-              <button onClick={btnOne}>
-                <img src={product.thumbnail} alt="loading..." />
-              </button>
-              <button onClick={btnTwo}>
-                <img src={product.images[0]} alt="loading..." />
-              </button>
-              <button onClick={btnThree}>
-                <img src={product.images[1]} alt="loading..." />
-              </button>
-            </div> */}
             </div>
-           
+
 
             <div className="details-right">
               <div className="details-info">
-              <h3 className="head-category">{product.category}</h3>
+                <h3 className="head-category">{product.category}</h3>
                 <h2>{product && product.title}</h2>
                 <p className="para">{product && product.description}</p>
                 <p className="rating">
@@ -85,17 +68,17 @@ const ProductDetails = () => {
                   {product.rating.rate.toFixed(1)}
                   <AiFillStar />
                 </p>
-                <h3>Price: ₹ {((product && product.price)*70).toFixed(2)}</h3>
+                <h3>Price: ₹ {((product && product.price) * 70).toFixed(2)}</h3>
 
                 <h4> Available offers:</h4>
 
-                <p>
+                <p className=" flex gap-1">
                   <span>
                     <ImPriceTag />
                   </span>
                   Bank Offer: 5% Cashback on Flipkart Axis Bank Card T&C
                 </p>
-                <p>
+                <p className=" flex gap-1">
                   <span>
                     <ImPriceTag />
                   </span>
@@ -111,16 +94,16 @@ const ProductDetails = () => {
                   </button>
                 ) : (
                   <button disabled>
-                    
+
                     <Link to="/cart">
-                      
+
                       GO TO CART</Link>
                   </button>
                 )}
               </div>
             </div>
           </div>
-        ) : <p style={{textAlign:"center"}} >Sorry! data not found</p>}
+        ) : <p style={{ textAlign: "center" }} >Sorry! data not found</p>}
       </div>
 
       <NewsLetter />

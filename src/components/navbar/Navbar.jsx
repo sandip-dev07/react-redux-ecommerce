@@ -49,7 +49,7 @@ const Navbar = () => {
 
             <img className="image" src={logo} alt="" />
             <Link to="/">
-              <h3>Redux</h3>
+              <h3 className="font-bold">REDUX</h3>
             </Link>
           </div>
           <div className="search">
@@ -63,10 +63,10 @@ const Navbar = () => {
             </form>
           </div>
           <div className="links">
-            <div className="user">
-              <a href="">
+            <div className="user ">
+              <Link to="/login">
                 <FaUser /> Login
-              </a>
+              </Link>
             </div>
 
             <Link to="/cart">
@@ -88,15 +88,15 @@ const Navbar = () => {
             </div>
             <img className="mob-img" src={logo} alt="" />
             <Link to="/">
-              <h3>Redux</h3>
+            <h3 className="font-bold">REDUX</h3>
             </Link>
           </div>
 
           <div className="links">
-            <div className="user">
-              <a href="">
+          <div className="user ">
+              <Link to="/login">
                 <FaUser /> Login
-              </a>
+              </Link>
             </div>
 
             <Link to="/cart">

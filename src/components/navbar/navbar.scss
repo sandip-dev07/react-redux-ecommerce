@@ -40,7 +40,7 @@
       form {
         width: 100%;
         input {
-          padding: 10px 8px;
+          padding: 7px;
           width: 80%;
           background-color: rgb(239, 235, 235);
         }
@@ -52,11 +52,18 @@
       align-items: center;
       justify-content: center;
       justify-content: flex-end;
-      a {
-        padding: 0 12px;
-        color: black;
-        text-transform: uppercase;
+      .user{
+        a {
+          padding: 0 12px;
+          color: black;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+        }
       }
+      
       .cart {
         position: relative;
         display: block;
@@ -129,6 +136,13 @@
         padding: 0 12px;
         color: black;
         text-transform: uppercase;
+        padding: 0 12px;
+          color: black;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
       }
       .cart {
         position: relative;
@@ -174,7 +188,7 @@
       align-items: center;
       justify-content: center;
       input {
-        padding: 10px 8px;
+        padding: 7px;
         width: 90%;
         background-color: rgb(239, 235, 235);
       }
@@ -231,7 +245,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 1rem;
+      padding: .6rem;
       .logo {
         display: flex;
         align-items: center;

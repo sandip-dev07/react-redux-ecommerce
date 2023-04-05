@@ -6,7 +6,6 @@ const initialState = {
   carts: [],
   products: [],
   loading: true,
-  selectedGenre: null,
 };
 
 // Fetch all products:

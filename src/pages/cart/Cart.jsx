@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import { RemoveCart } from "../../Redux/reducer/productSlice";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,12 @@ const Cart = () => {
                         <h5>₹{(item.price * 70).toFixed(2)}</h5>
 
                         <button
-                          onClick={() => dispatch(RemoveCart(item.id))}
+                          onClick={() =>{
+                            dispatch(RemoveCart(item.id))
+                            toast.error("Removed from cart", {
+                              position: toast.POSITION.BOTTOM_RIGHT,
+                            });
+                          }}
                           className="btn"
                         >
                           <MdDeleteOutline />
@@ -53,7 +59,7 @@ const Cart = () => {
           ) : (
             <div className="empty">
               <p>Your cart is empty</p>
-              <Link to="/">
+              <Link to="/" className=" flex items-center gap-1">
                 <BiArrowBack /> Back to shopping
               </Link>
             </div>

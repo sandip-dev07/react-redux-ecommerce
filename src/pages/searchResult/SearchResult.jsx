@@ -42,7 +42,7 @@ const SearchResult = () => {
           <>
             <div className="empty">
               <p>No products found</p>
-              <Link to="/">
+              <Link to="/" className=" flex items-center gap-1">
                 <BiArrowBack /> Back to home
               </Link>
             </div>{" "}
